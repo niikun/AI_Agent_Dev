@@ -1,0 +1,95 @@
+# ======================
+# OS
+# ======================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# ======================
+# Logs
+# ======================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ======================
+# Node.js
+# ======================
+node_modules/
+dist/
+build/
+out/
+.cache/
+.next/
+.nuxt/
+.svelte-kit/
+coverage/
+.nyc_output/
+*.tsbuildinfo
+
+# env files
+.env
+.env.*
+!.env.example
+
+# ======================
+# Python
+# ======================
+__pycache__/
+*.py[cod]
+*.pyd
+*.pyo
+*.pdb
+*.egg-info/
+.eggs/
+venv/
+.venv/
+ENV/
+env/
+pip-wheel-metadata/
+.pytest_cache/
+.mypy_cache/
+.pyre/
+.ruff_cache/
+.pytype/
+*.sqlite3
+
+# ======================
+# Java / Gradle / Maven
+# ======================
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.iml
+.gradle/
+build/
+
+# ======================
+# IDE / Editor
+# ======================
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+
+# ======================
+# Misc
+# ======================
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
