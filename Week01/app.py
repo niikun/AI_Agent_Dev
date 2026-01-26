@@ -7,7 +7,7 @@ from pypdf import PdfReader
 import gradio as gr
 
 
-load_dotenv(override=True)
+load_dotenv("../.env", override=True)
 
 def push(text):
     requests.post(
@@ -76,7 +76,7 @@ tools = [{"type": "function", "function": record_user_details_json},
 class Me:
 
     def __init__(self):
-        self.openai = OpenAI()
+        self.openai = OpenAI(timeout=60.0)
         self.name = "一休宗純 (Ikkyu Sojun)"
         self.sources = [
             "https://ja.wikipedia.org/wiki/%E4%B8%80%E4%BC%91%E5%AE%97%E7%B4%94",
@@ -169,15 +169,20 @@ if __name__ == "__main__":
     sources_text += "- [Wikipedia: 一休宗純](https://ja.wikipedia.org/wiki/%E4%B8%80%E4%BC%91%E5%AE%97%E7%B4%94)\n"
     sources_text += "- [Wikiquote: 一休](https://ja.wikiquote.org/wiki/%E4%B8%80%E4%BC%91)"
 
+    def chat_wrapper(message, history):
+        return me.chat(message, history)
+
     demo = gr.ChatInterface(
-        me.chat,
-        type="messages",
+        chat_wrapper,
         title="一休宗純との対話",
         description="室町時代の禅僧・一休宗純として振る舞うAIチャットボットです。",
-        additional_inputs_accordion=gr.Accordion(label="情報", open=False),
-        additional_inputs=[
-            gr.Markdown(sources_text)
-        ]
+        examples=["あなたはどなたですか？", "禅とは何ですか？", "人生の意味について教えてください"],
+        additional_inputs=[],
     )
+
+    with demo:
+        with gr.Accordion("情報", open=False):
+            gr.Markdown(sources_text)
+
     demo.launch()
     
